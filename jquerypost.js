@@ -2,17 +2,38 @@ window.onload=function() {
 
 var $form = $("#purchase")
 
+function validateRadio (radios)
+{
+    for (i = 0; i < radios.length; ++ i)
+    {
+        if (radios [i].checked) return true;
+    }
+    return false;
+}
+
 function validate(){
+  var flag = false;
   var fields = $form[0].childNodes;
   for(i = 0; i < fields.length; i++){
-    if($(fields[i]).is(":input") && fields[i].hasAttribute("name")){
+
+    if( ($(fields[i]).is(":input") || ($(fields[i]).is("select"))) && fields[i].hasAttribute("name")){
+
       if($(fields[i]).is(":checkbox") && $(fields[i]).attr( "checked" )== false) {return false;}
+
+      if($(fields[i]).is(":radio")) {
+        if ($(fields[i]).attr( "checked" )){
+          flag = true;
+        }
+      } 
+
       if(fields[i].value.trim().length == 0){
         return false;
       }
     }
   }
-  return true;
+  if(flag){
+    return true;
+  }
 }
 $( "#buybutton" ).click(function( event ) {
  
