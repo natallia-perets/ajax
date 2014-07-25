@@ -1,17 +1,26 @@
 window.onload=function() {
+
+var $form = $("#purchase")
+
+function validate(){
+  var fields = $form[0].childNodes;
+  for(i = 0; i < fields.length; i++){
+    if($(fields[i]).is(":input") && fields[i].hasAttribute("name")){
+      if($(fields[i]).is(":checkbox") && $(fields[i]).attr( "checked" )== false) {return false;}
+      if(fields[i].value.trim().length == 0){
+        return false;
+      }
+    }
+  }
+  return true;
+}
 $( "#buybutton" ).click(function( event ) {
  
   // Stop form from submitting normally
   event.preventDefault();
- 
-  // Get some values from elements on the page:
-    var $form = $("#purchase")
-    email = $form.find( "input[name='email']" ).val(),
-    name = $form.find( "input[name='name']" ).val(),
-    check = $form.find("input[name='agree']").val();
-
-    if (email && name && check) {
-     var msg= $form.serialize();
+  if(validate())
+  {
+    var msg= $form.serialize();
             $.ajax({
                 type: "POST",
                 url: "http://localhost/",
@@ -25,15 +34,18 @@ $( "#buybutton" ).click(function( event ) {
                         var el = document.getElementById("result");
                         el.innerHTML = "SUCCESS";
                     }
+                },
+                error: function(e) {
+                  alert("some error");
                 }
-                
+
             });
-        }
-        else
-        {
-           var el = document.getElementById("result");
-           el.innerHTML = "FAILED";
-        }
+   }
+   else
+   {
+      var el = document.getElementById("result");
+      el.innerHTML = "FAILED";
+   }
 });
 
 };
