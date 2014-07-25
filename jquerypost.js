@@ -2,15 +2,6 @@ window.onload=function() {
 
 var $form = $("#purchase")
 
-function validateRadio (radios)
-{
-    for (i = 0; i < radios.length; ++ i)
-    {
-        if (radios [i].checked) return true;
-    }
-    return false;
-}
-
 function validate(){
   var flag = false;
   var fields = $form[0].childNodes;
