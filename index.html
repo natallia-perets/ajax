@@ -10,7 +10,7 @@
 			<input type="text" name="email" size = "40" id="email">
 			<p><b>Name:</b><br>
 			<input type="text" name="name" size id="name"= "40"><br>
-			<select default = >
+			<select name = "list" default = >
 				<option selected value disabled>Choose country</option>
   				<option>Iceland</option>
   				<option>Ireland</option>
@@ -18,10 +18,10 @@
 			</select><br>
 			<input type="checkbox" name="agree">I agree with Terms and Conditions<br>
 			<p><b>Shipping:</b><Br>
-   				<input type="radio" name="shipping1" value="by post">by post<br>
-   				<input type="radio" name="shipping2" value="self pick up">self pick up<br>
+   				<input type="radio" name="shipping" value="by post">by post<br>
+   				<input type="radio" name="shipping" value="self pick up">self pick up<br>
    			</p>
-   			<input  type="submit" name="buy" value="Buy"><br>
+   			<input  type="button" name="buy"  id="buybutton" value="Buy"><br>
 		</form>
 		<div id="result"></div>
 	</body>

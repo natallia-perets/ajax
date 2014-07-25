@@ -1,11 +1,11 @@
 window.onload=function() {
-$( "#purchase" ).submit(function( event ) {
+$( "#buybutton" ).click(function( event ) {
  
   // Stop form from submitting normally
   event.preventDefault();
  
   // Get some values from elements on the page:
-  var $form = $( this ),
+    var $form = $("#purchase")
     email = $form.find( "input[name='email']" ).val(),
     name = $form.find( "input[name='name']" ).val(),
     check = $form.find("input[name='agree']").val();
@@ -14,7 +14,7 @@ $( "#purchase" ).submit(function( event ) {
      var msg= $form.serialize();
             $.ajax({
                 type: "POST",
-                url: $form.attr( "action" ),
+                url: "http://localhost/",
                 data: msg,
                 cache: false,
                 success: function (e) {
@@ -26,6 +26,7 @@ $( "#purchase" ).submit(function( event ) {
                         el.innerHTML = "SUCCESS";
                     }
                 }
+                
             });
         }
         else
